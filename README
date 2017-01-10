@@ -1,0 +1,46 @@
+# Chatter
+
+Chatter is a dialogue tree parser for Love2D. It takes in an xml file that structures the branching dialogue, and processes it, returning the NPC's line of dialogue, followed by the player's response options.
+
+Since it just returns a table of strings, it is easy to plug into whatever UI library you might already be using for your game.
+
+### Formatting your XML
+
+conv: Surrounds one conversation. A conversation contains multiple chats.
+
+chat: Contains the NPC's line of dialogue and a number of responses.
+
+npc: The NPC's line of dialogue.
+
+resp: A player's response option
+
+Example:
+
+```xml
+<conv id='1'>
+  <chat id='1'>
+    <npc>
+      Hello, this is a line of dialogue!
+    </npc>
+    <resp next='2'>
+      This response leads to chat 2.
+    </resp>
+    <resp next = '3'>
+      And this one goes to 3!
+    </resp>
+  </chat>
+
+  <chat id='2'>
+    <npc>
+      You chose response 1.
+    </npc>
+  </chat>
+
+  <chat id='3'>
+    <npc>
+      Ooh, bad choice.
+    </npc>
+  </chat>
+</conv>
+
+```
