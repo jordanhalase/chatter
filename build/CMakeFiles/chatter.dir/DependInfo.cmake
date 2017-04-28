@@ -4,8 +4,6 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/owenmonsma/code/chatter/src/ChatEdge.cpp" "/Users/owenmonsma/code/chatter/build/CMakeFiles/chatter.dir/src/ChatEdge.cpp.o"
-  "/Users/owenmonsma/code/chatter/src/ChatNode.cpp" "/Users/owenmonsma/code/chatter/build/CMakeFiles/chatter.dir/src/ChatNode.cpp.o"
   "/Users/owenmonsma/code/chatter/src/Chatter.cpp" "/Users/owenmonsma/code/chatter/build/CMakeFiles/chatter.dir/src/Chatter.cpp.o"
   "/Users/owenmonsma/code/chatter/src/main.cpp" "/Users/owenmonsma/code/chatter/build/CMakeFiles/chatter.dir/src/main.cpp.o"
   )

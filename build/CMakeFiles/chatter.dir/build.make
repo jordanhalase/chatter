@@ -57,57 +57,9 @@ include CMakeFiles/chatter.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/chatter.dir/flags.make
 
-CMakeFiles/chatter.dir/src/ChatEdge.cpp.o: CMakeFiles/chatter.dir/flags.make
-CMakeFiles/chatter.dir/src/ChatEdge.cpp.o: ../src/ChatEdge.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/owenmonsma/code/chatter/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/chatter.dir/src/ChatEdge.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/chatter.dir/src/ChatEdge.cpp.o -c /Users/owenmonsma/code/chatter/src/ChatEdge.cpp
-
-CMakeFiles/chatter.dir/src/ChatEdge.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/chatter.dir/src/ChatEdge.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/owenmonsma/code/chatter/src/ChatEdge.cpp > CMakeFiles/chatter.dir/src/ChatEdge.cpp.i
-
-CMakeFiles/chatter.dir/src/ChatEdge.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/chatter.dir/src/ChatEdge.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/owenmonsma/code/chatter/src/ChatEdge.cpp -o CMakeFiles/chatter.dir/src/ChatEdge.cpp.s
-
-CMakeFiles/chatter.dir/src/ChatEdge.cpp.o.requires:
-
-.PHONY : CMakeFiles/chatter.dir/src/ChatEdge.cpp.o.requires
-
-CMakeFiles/chatter.dir/src/ChatEdge.cpp.o.provides: CMakeFiles/chatter.dir/src/ChatEdge.cpp.o.requires
-	$(MAKE) -f CMakeFiles/chatter.dir/build.make CMakeFiles/chatter.dir/src/ChatEdge.cpp.o.provides.build
-.PHONY : CMakeFiles/chatter.dir/src/ChatEdge.cpp.o.provides
-
-CMakeFiles/chatter.dir/src/ChatEdge.cpp.o.provides.build: CMakeFiles/chatter.dir/src/ChatEdge.cpp.o
-
-
-CMakeFiles/chatter.dir/src/ChatNode.cpp.o: CMakeFiles/chatter.dir/flags.make
-CMakeFiles/chatter.dir/src/ChatNode.cpp.o: ../src/ChatNode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/owenmonsma/code/chatter/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/chatter.dir/src/ChatNode.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/chatter.dir/src/ChatNode.cpp.o -c /Users/owenmonsma/code/chatter/src/ChatNode.cpp
-
-CMakeFiles/chatter.dir/src/ChatNode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/chatter.dir/src/ChatNode.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/owenmonsma/code/chatter/src/ChatNode.cpp > CMakeFiles/chatter.dir/src/ChatNode.cpp.i
-
-CMakeFiles/chatter.dir/src/ChatNode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/chatter.dir/src/ChatNode.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/owenmonsma/code/chatter/src/ChatNode.cpp -o CMakeFiles/chatter.dir/src/ChatNode.cpp.s
-
-CMakeFiles/chatter.dir/src/ChatNode.cpp.o.requires:
-
-.PHONY : CMakeFiles/chatter.dir/src/ChatNode.cpp.o.requires
-
-CMakeFiles/chatter.dir/src/ChatNode.cpp.o.provides: CMakeFiles/chatter.dir/src/ChatNode.cpp.o.requires
-	$(MAKE) -f CMakeFiles/chatter.dir/build.make CMakeFiles/chatter.dir/src/ChatNode.cpp.o.provides.build
-.PHONY : CMakeFiles/chatter.dir/src/ChatNode.cpp.o.provides
-
-CMakeFiles/chatter.dir/src/ChatNode.cpp.o.provides.build: CMakeFiles/chatter.dir/src/ChatNode.cpp.o
-
-
 CMakeFiles/chatter.dir/src/Chatter.cpp.o: CMakeFiles/chatter.dir/flags.make
 CMakeFiles/chatter.dir/src/Chatter.cpp.o: ../src/Chatter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/owenmonsma/code/chatter/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/chatter.dir/src/Chatter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/owenmonsma/code/chatter/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/chatter.dir/src/Chatter.cpp.o"
 	/Library/Developer/CommandLineTools/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/chatter.dir/src/Chatter.cpp.o -c /Users/owenmonsma/code/chatter/src/Chatter.cpp
 
 CMakeFiles/chatter.dir/src/Chatter.cpp.i: cmake_force
@@ -131,7 +83,7 @@ CMakeFiles/chatter.dir/src/Chatter.cpp.o.provides.build: CMakeFiles/chatter.dir/
 
 CMakeFiles/chatter.dir/src/main.cpp.o: CMakeFiles/chatter.dir/flags.make
 CMakeFiles/chatter.dir/src/main.cpp.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/owenmonsma/code/chatter/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/chatter.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/owenmonsma/code/chatter/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/chatter.dir/src/main.cpp.o"
 	/Library/Developer/CommandLineTools/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/chatter.dir/src/main.cpp.o -c /Users/owenmonsma/code/chatter/src/main.cpp
 
 CMakeFiles/chatter.dir/src/main.cpp.i: cmake_force
@@ -155,21 +107,17 @@ CMakeFiles/chatter.dir/src/main.cpp.o.provides.build: CMakeFiles/chatter.dir/src
 
 # Object files for target chatter
 chatter_OBJECTS = \
-"CMakeFiles/chatter.dir/src/ChatEdge.cpp.o" \
-"CMakeFiles/chatter.dir/src/ChatNode.cpp.o" \
 "CMakeFiles/chatter.dir/src/Chatter.cpp.o" \
 "CMakeFiles/chatter.dir/src/main.cpp.o"
 
 # External object files for target chatter
 chatter_EXTERNAL_OBJECTS =
 
-chatter: CMakeFiles/chatter.dir/src/ChatEdge.cpp.o
-chatter: CMakeFiles/chatter.dir/src/ChatNode.cpp.o
 chatter: CMakeFiles/chatter.dir/src/Chatter.cpp.o
 chatter: CMakeFiles/chatter.dir/src/main.cpp.o
 chatter: CMakeFiles/chatter.dir/build.make
 chatter: CMakeFiles/chatter.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/owenmonsma/code/chatter/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable chatter"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/owenmonsma/code/chatter/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable chatter"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/chatter.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -177,8 +125,6 @@ CMakeFiles/chatter.dir/build: chatter
 
 .PHONY : CMakeFiles/chatter.dir/build
 
-CMakeFiles/chatter.dir/requires: CMakeFiles/chatter.dir/src/ChatEdge.cpp.o.requires
-CMakeFiles/chatter.dir/requires: CMakeFiles/chatter.dir/src/ChatNode.cpp.o.requires
 CMakeFiles/chatter.dir/requires: CMakeFiles/chatter.dir/src/Chatter.cpp.o.requires
 CMakeFiles/chatter.dir/requires: CMakeFiles/chatter.dir/src/main.cpp.o.requires
 

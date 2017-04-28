@@ -123,60 +123,6 @@ chatter/fast:
 	$(MAKE) -f CMakeFiles/chatter.dir/build.make CMakeFiles/chatter.dir/build
 .PHONY : chatter/fast
 
-src/ChatEdge.o: src/ChatEdge.cpp.o
-
-.PHONY : src/ChatEdge.o
-
-# target to build an object file
-src/ChatEdge.cpp.o:
-	$(MAKE) -f CMakeFiles/chatter.dir/build.make CMakeFiles/chatter.dir/src/ChatEdge.cpp.o
-.PHONY : src/ChatEdge.cpp.o
-
-src/ChatEdge.i: src/ChatEdge.cpp.i
-
-.PHONY : src/ChatEdge.i
-
-# target to preprocess a source file
-src/ChatEdge.cpp.i:
-	$(MAKE) -f CMakeFiles/chatter.dir/build.make CMakeFiles/chatter.dir/src/ChatEdge.cpp.i
-.PHONY : src/ChatEdge.cpp.i
-
-src/ChatEdge.s: src/ChatEdge.cpp.s
-
-.PHONY : src/ChatEdge.s
-
-# target to generate assembly for a file
-src/ChatEdge.cpp.s:
-	$(MAKE) -f CMakeFiles/chatter.dir/build.make CMakeFiles/chatter.dir/src/ChatEdge.cpp.s
-.PHONY : src/ChatEdge.cpp.s
-
-src/ChatNode.o: src/ChatNode.cpp.o
-
-.PHONY : src/ChatNode.o
-
-# target to build an object file
-src/ChatNode.cpp.o:
-	$(MAKE) -f CMakeFiles/chatter.dir/build.make CMakeFiles/chatter.dir/src/ChatNode.cpp.o
-.PHONY : src/ChatNode.cpp.o
-
-src/ChatNode.i: src/ChatNode.cpp.i
-
-.PHONY : src/ChatNode.i
-
-# target to preprocess a source file
-src/ChatNode.cpp.i:
-	$(MAKE) -f CMakeFiles/chatter.dir/build.make CMakeFiles/chatter.dir/src/ChatNode.cpp.i
-.PHONY : src/ChatNode.cpp.i
-
-src/ChatNode.s: src/ChatNode.cpp.s
-
-.PHONY : src/ChatNode.s
-
-# target to generate assembly for a file
-src/ChatNode.cpp.s:
-	$(MAKE) -f CMakeFiles/chatter.dir/build.make CMakeFiles/chatter.dir/src/ChatNode.cpp.s
-.PHONY : src/ChatNode.cpp.s
-
 src/Chatter.o: src/Chatter.cpp.o
 
 .PHONY : src/Chatter.o
@@ -240,12 +186,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... chatter"
-	@echo "... src/ChatEdge.o"
-	@echo "... src/ChatEdge.i"
-	@echo "... src/ChatEdge.s"
-	@echo "... src/ChatNode.o"
-	@echo "... src/ChatNode.i"
-	@echo "... src/ChatNode.s"
 	@echo "... src/Chatter.o"
 	@echo "... src/Chatter.i"
 	@echo "... src/Chatter.s"

@@ -1,6 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/chatter.dir/src/ChatEdge.cpp.o"
-  "CMakeFiles/chatter.dir/src/ChatNode.cpp.o"
   "CMakeFiles/chatter.dir/src/Chatter.cpp.o"
   "CMakeFiles/chatter.dir/src/main.cpp.o"
   "chatter.pdb"

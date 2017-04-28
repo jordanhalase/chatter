@@ -1,35 +1,37 @@
-/*
+/* Chatter.h
  * Owen Monsma
- * Chatter.hpp
- * 19 April 2017
+ * 25 April 2017
  */
 
-#ifndef Chatter_hpp
-#define Chatter_hpp
+class Chatter{
+public:
+  Chatter();
+  ~Chatter();
 
-#include "ChatNode.hpp"
-#include "ChatEdge.hpp"
+  Chatter(char* file);
 
-namespace Chatter{
-  enum filemode {XML, JSON, BIN};
+  /** Returns formatted string for specified node ID */
+  char* print(int n);
 
-  class Chatter{
-  public:
-    Chatter();
-    ~Chatter();
+  /** Adds a new response to the specified node ID */
+  int addResponse(int id, char* line, int next);
 
-    // setup functions
-    void loadChat(std::string file, filemode mode);
-    void setEntry(ChatNode* e);
-    void chat();
+private:
+  typedef struct Node {
+    int nodeID = -1;
+    char* line;
+    int resps = 0;
+    int[numResps] next;
+  } Node;
 
-    void initTestChat();
+  typedef struct Edge {
+    char* line;
+    int next;
+  } Edge;
 
-  private:
-    ChatNode* entry;
-    ChatNode* current;
-    bool chatting;
-  };
+  Node* nodeArr;
+  Edge* edgeArr;
+
+  const int chatSize;
+  const int maxResps;
 }
-
-#endif /* Chatter_hpp */

@@ -6,28 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/owenmonsma/code/chatter/src/ChatEdge.cpp
-ChatEdge.hpp
-/Users/owenmonsma/code/chatter/src/ChatEdge.hpp
-
-/Users/owenmonsma/code/chatter/src/ChatEdge.hpp
-string
--
-ChatNode.hpp
-/Users/owenmonsma/code/chatter/src/ChatNode.hpp
-
-/Users/owenmonsma/code/chatter/src/ChatNode.cpp
-ChatNode.hpp
-/Users/owenmonsma/code/chatter/src/ChatNode.hpp
-stdio.h
--
-
-/Users/owenmonsma/code/chatter/src/ChatNode.hpp
-string
--
-ChatEdge.hpp
-/Users/owenmonsma/code/chatter/src/ChatEdge.hpp
-
 /Users/owenmonsma/code/chatter/src/Chatter.cpp
 iostream
 -
@@ -35,10 +13,6 @@ Chatter.hpp
 /Users/owenmonsma/code/chatter/src/Chatter.hpp
 
 /Users/owenmonsma/code/chatter/src/Chatter.hpp
-ChatNode.hpp
-/Users/owenmonsma/code/chatter/src/ChatNode.hpp
-ChatEdge.hpp
-/Users/owenmonsma/code/chatter/src/ChatEdge.hpp
 
 /Users/owenmonsma/code/chatter/src/main.cpp
 iostream
