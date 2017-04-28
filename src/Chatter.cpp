@@ -31,6 +31,22 @@ std::string Chatter::print(int n){
   return "Invalid node.\n";
 }
 
+void Chatter::chat(){
+  int curr = 0;
+  bool chatting = true;
+  while (chatting){
+    if (curr < numNodes){
+      std::cout << this->print(curr) << std::endl;
+      int choice = -1;
+      while (choice < 0 || choice >= nodeArr[curr].resps){
+        std::cin >> choice;
+      }
+
+      curr = nodeArr[curr].next[choice];
+    }
+  }
+}
+
 int Chatter::addNode(std::string line){
   if (numNodes < CHAT_SIZE){
     nodeArr[numNodes].line = line;

@@ -5,16 +5,16 @@
 void setupTestChat(Chatter* chat);
 
 int main(int argc, char* argv[]){
-  Chatter testChat;
+  Chatter testChat = Chatter();
   setupTestChat(&testChat);
-  std::cout << testChat.print(0) << std::endl;
+  testChat.chat();
   return 0;
 }
 
 void setupTestChat(Chatter* chat){
-  chat->addNode("The first chat node.");
-  chat->addNode("The second chat node.");
-
-  chat->addResp(0, "One response", 1);
-  chat->addResp(0, "Two response", 1);
+  chat->addNode("First node!");
+  chat->addNode("result 1.");
+  chat->addNode("result 2");
+  chat->addResp(0, "go to result 1", 1);
+  chat->addResp(0, "go to result 2", 2);
 }

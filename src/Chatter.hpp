@@ -7,6 +7,7 @@
 #define Chatter_hpp
 
 #include <string>
+#include <iostream>
 
 #define CHAT_SIZE 64
 #define MAX_RESPS 6
@@ -26,6 +27,8 @@ public:
 
   /** Adds a new response to the specified node ID or -1 on fail */
   int addResp(int id, std::string line, int next);
+
+  void chat();
 
 private:
 
