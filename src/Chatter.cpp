@@ -38,11 +38,11 @@ void Chatter::chat(){
     if (curr < numNodes){
       std::cout << this->print(curr) << std::endl;
       int choice = -1;
-      while (choice < 0 || choice >= nodeArr[curr].resps){
+      while (choice < 0 || choice > nodeArr[curr].resps){
         std::cin >> choice;
       }
-
-      curr = nodeArr[curr].next[choice];
+      int rIndex = nodeArr[curr].next[choice - 1];
+      curr = respArr[rIndex].next;
     }
   }
 }
@@ -63,8 +63,9 @@ int Chatter::addResp(int nodeID, std::string line, int next){
     respArr[numResps].next = next;
     // Add the response to the specified node
     Node* tmp = &nodeArr[nodeID];
-    tmp->next[tmp->resps++] = numResps;
+    tmp->next[tmp->resps] = numResps;
 
+    tmp->resps++;
     return numResps++;
   }
   return -1;

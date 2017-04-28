@@ -12,9 +12,12 @@ int main(int argc, char* argv[]){
 }
 
 void setupTestChat(Chatter* chat){
-  chat->addNode("First node!");
-  chat->addNode("result 1.");
-  chat->addNode("result 2");
-  chat->addResp(0, "go to result 1", 1);
-  chat->addResp(0, "go to result 2", 2);
+  int node0 = chat->addNode("First node!");
+  int node1 = chat->addNode("result 1.");
+  int node2 = chat->addNode("result 2.");
+  int respTo1 = chat->addResp(0, "go to result 1", 1);
+  int respTo2 = chat->addResp(0, "go to result 2", 2);
+
+  chat->addResp(1, "go home", 0);
+  chat->addResp(2, "go home", 0);
 }

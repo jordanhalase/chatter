@@ -1,8 +1,10 @@
 cmake_minimum_required (VERSION 3.7)
 project (Chatter VERSION 0.1 LANGUAGES CXX)
 
-# Sets all .cpp files in /src for building
-file(GLOB SOURCES src/*.cpp)
+#enable_testing()
 
-add_executable(chatter ${SOURCES})
+add_executable(chtrDriver src/driver.cpp)
+target_link_libraries(chtrDriver Chatter)
 
+add_subdirectory(src)
+#add_subdirectory(test)
