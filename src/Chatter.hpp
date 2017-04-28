@@ -3,6 +3,14 @@
  * 25 April 2017
  */
 
+#ifndef Chatter_hpp
+#define Chatter_hpp
+
+#include <string>
+
+#define CHAT_SIZE 64
+#define MAX_RESPS 6
+
 class Chatter{
 public:
   Chatter();
@@ -11,27 +19,36 @@ public:
   Chatter(char* file);
 
   /** Returns formatted string for specified node ID */
-  char* print(int n);
+  std::string print(int n);
 
-  /** Adds a new response to the specified node ID */
-  int addResponse(int id, char* line, int next);
+  /** Adds a new conversation node and returns its ID or -1 on fail */
+  int addNode(std::string line);
+
+  /** Adds a new response to the specified node ID or -1 on fail */
+  int addResp(int id, std::string line, int next);
 
 private:
+
+  int numNodes;
+  int numResps;
+
   typedef struct Node {
-    int nodeID = -1;
-    char* line;
+    int nodeID;
+    std::string line;
     int resps = 0;
-    int[numResps] next;
+    int next[MAX_RESPS];
   } Node;
 
-  typedef struct Edge {
-    char* line;
+  typedef struct Resp {
+    int respID;
+    std::string line;
     int next;
-  } Edge;
+  } Resp;
 
   Node* nodeArr;
-  Edge* edgeArr;
+  Resp* respArr;
 
-  const int chatSize;
-  const int maxResps;
-}
+
+};
+
+#endif
