@@ -4,6 +4,7 @@
  */
 
 #include "Chatter.hpp"
+#include <fstream>
 
 Chatter::Chatter(){
   nodeArr = new Node[CHAT_SIZE];
@@ -78,4 +79,12 @@ int Chatter::addResp(int nodeID, std::string line, int next){
     }
   }
   return -1;
+}
+
+int Chatter::saveChat(std::string filename){
+  std::ofstream ofs(filename);
+  boost::archive::text_oarchive oa(ofs);
+  oa << this;
+
+  return 0;
 }

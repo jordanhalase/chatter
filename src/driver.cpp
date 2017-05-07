@@ -20,4 +20,6 @@ void setupTestChat(Chatter* chat){
 
   chat->addResp(1, "go home", 0);
   chat->addResp(2, "go home", 0);
+
+  chat->saveChat("../test/save1");
 }

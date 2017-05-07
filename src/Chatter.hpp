@@ -9,6 +9,9 @@
 #include <string>
 #include <iostream>
 
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
+
 #define CHAT_SIZE 64
 #define MAX_RESPS 6
 
@@ -33,11 +36,22 @@ public:
 
   void chat();
 
+  /** Saves the current chat to the specified file */
+  int saveChat(std::string filename);
+
+  /** Loads chat from the specified file */
+  //int loadChat(std::string filename);
+
 private:
 
   struct Resp {
     std::string line;
     int next;
+    template <class Archive>
+    void serialize(Archive& ar, const unsigned int version){
+      ar & line;
+      ar & next;
+    }
   };
 
   struct Node {
@@ -47,10 +61,24 @@ private:
     std::string line;
     int resps;
     Resp* next;
+
+    template <class Archive>
+    void serialize(Archive& ar, const unsigned int version){
+      ar & nodeID;
+      ar & line;
+      ar & resps;
+      ar & next;
+    }
   };
 
 
   Node* nodeArr;
+
+  friend class boost::serialization::access;
+  template <class Archive>
+  void serialize(Archive& ar, const unsigned int version){
+    ar & nodeArr;
+  }
 
 };
 
