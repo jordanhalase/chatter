@@ -37,16 +37,19 @@ public:
   void chat();
 
   /** Saves the current chat to the specified file */
-  int saveChat(std::string filename);
+  void saveChat(std::string filename);
 
   /** Loads chat from the specified file */
-  //int loadChat(std::string filename);
+  void loadChat(std::string filename);
 
 private:
 
   struct Resp {
+    Resp();
+
     std::string line;
     int next;
+
     template <class Archive>
     void serialize(Archive& ar, const unsigned int version){
       ar & line;
@@ -56,11 +59,11 @@ private:
 
   struct Node {
     Node();
-    ~Node();
+
     int nodeID;
     std::string line;
     int resps;
-    Resp* next;
+    Resp next[MAX_RESPS];
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int version){
@@ -72,7 +75,7 @@ private:
   };
 
 
-  Node* nodeArr;
+  Node nodeArr[CHAT_SIZE];
 
   friend class boost::serialization::access;
   template <class Archive>

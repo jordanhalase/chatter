@@ -7,22 +7,23 @@
 #include <fstream>
 
 Chatter::Chatter(){
-  nodeArr = new Node[CHAT_SIZE];
 
 }
 
 Chatter::~Chatter(){
-  delete[] nodeArr;
+
 }
 
 Chatter::Node::Node(){
   nodeID = -1;
   resps = 0;
-  next = new Resp[MAX_RESPS];
+  line = "";
+
 }
 
-Chatter::Node::~Node(){
-  delete[] next;
+Chatter::Resp::Resp(){
+  line = "";
+  next = 0;
 }
 
 std::string Chatter::print(int n){
@@ -81,10 +82,14 @@ int Chatter::addResp(int nodeID, std::string line, int next){
   return -1;
 }
 
-int Chatter::saveChat(std::string filename){
+void Chatter::saveChat(std::string filename){
   std::ofstream ofs(filename);
   boost::archive::text_oarchive oa(ofs);
-  oa << this;
+  oa << *this;
+}
 
-  return 0;
+void Chatter::loadChat(std::string filename){
+  std::ifstream ifs(filename);
+  boost::archive::text_iarchive ia(ifs);
+  ia >> *this;
 }

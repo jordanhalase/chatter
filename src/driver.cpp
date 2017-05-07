@@ -3,11 +3,17 @@
 #include "Chatter.hpp"
 
 void setupTestChat(Chatter* chat);
+void loadTestChat(Chatter* chat);
 
 int main(int argc, char* argv[]){
   Chatter testChat = Chatter();
   setupTestChat(&testChat);
-  testChat.chat();
+
+  Chatter loadedChat = Chatter();
+
+  loadTestChat(&loadedChat);
+
+  loadedChat.chat();
   return 0;
 }
 
@@ -22,4 +28,10 @@ void setupTestChat(Chatter* chat){
   chat->addResp(2, "go home", 0);
 
   chat->saveChat("../test/save1");
+  std::cout << "Saving out." << std::endl;
+}
+
+void loadTestChat(Chatter* chat){
+  chat->loadChat("../test/save1");
+  std::cout << "Loading in." << std::endl;
 }
