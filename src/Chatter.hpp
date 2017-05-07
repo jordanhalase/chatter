@@ -25,6 +25,9 @@ public:
   /** Adds a new conversation node and returns its ID or -1 on fail */
   int addNode(std::string line);
 
+  /** Removes specified node, returning the index or -1 on fail */
+  int removeNode(int id);
+
   /** Adds a new response to the specified node ID or -1 on fail */
   int addResp(int id, std::string line, int next);
 
@@ -32,25 +35,22 @@ public:
 
 private:
 
-  int numNodes;
-  int numResps;
-
-  typedef struct Node {
-    int nodeID;
-    std::string line;
-    int resps = 0;
-    int next[MAX_RESPS];
-  } Node;
-
-  typedef struct Resp {
-    int respID;
+  struct Resp {
     std::string line;
     int next;
-  } Resp;
+  };
+
+  struct Node {
+    Node();
+    ~Node();
+    int nodeID;
+    std::string line;
+    int resps;
+    Resp* next;
+  };
+
 
   Node* nodeArr;
-  Resp* respArr;
-
 
 };
 

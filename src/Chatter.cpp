@@ -7,24 +7,29 @@
 
 Chatter::Chatter(){
   nodeArr = new Node[CHAT_SIZE];
-  respArr = new Resp[CHAT_SIZE * MAX_RESPS];
 
-  numNodes = 0;
-  numResps = 0;
 }
 
 Chatter::~Chatter(){
   delete[] nodeArr;
-  delete[] respArr;
 }
 
+Chatter::Node::Node(){
+  nodeID = -1;
+  resps = 0;
+  next = new Resp[MAX_RESPS];
+}
+
+Chatter::Node::~Node(){
+  delete[] next;
+}
 
 std::string Chatter::print(int n){
-  if (n >= 0 && n < numNodes){
+  if (n >= 0 && nodeArr[n].nodeID != -1){
     Node* tmp = &nodeArr[n];
     std::string ret = tmp->line + "\n";
     for (int i = 0; i < tmp->resps; i++){
-      ret += std::to_string(i + 1) + ". " + respArr[tmp->next[i]].line + "\n";
+      ret += std::to_string(i + 1) + ". " + tmp->next[i].line + "\n";
     }
     return ret;
   }
@@ -35,38 +40,42 @@ void Chatter::chat(){
   int curr = 0;
   bool chatting = true;
   while (chatting){
-    if (curr < numNodes){
-      std::cout << this->print(curr) << std::endl;
-      int choice = -1;
-      while (choice < 0 || choice > nodeArr[curr].resps){
-        std::cin >> choice;
-      }
-      int rIndex = nodeArr[curr].next[choice - 1];
-      curr = respArr[rIndex].next;
+    std::cout << this->print(curr) << std::endl;
+    int choice = -1;
+    while (choice < 0 || choice > nodeArr[curr].resps){
+      std::cin >> choice;
     }
+    curr = nodeArr[curr].next[choice - 1].next;
   }
 }
 
 int Chatter::addNode(std::string line){
-  if (numNodes < CHAT_SIZE){
-    nodeArr[numNodes].line = line;
-    return numNodes++;
+  // iterates array, inserting node into first empty space
+  for (int i = 0; i < CHAT_SIZE; i++){
+    // empty node slot
+    if (nodeArr[i].nodeID == -1){
+        nodeArr[i].nodeID = i;
+        nodeArr[i].line = line;
+        // std::cout << "added node at " << i << std::endl;
+        return i;
+    }
   }
   return -1;
 }
 
 int Chatter::addResp(int nodeID, std::string line, int next){
-  // Checks for room in respArr, and in the node's responses
-  if (numResps < (CHAT_SIZE * MAX_RESPS) && nodeArr[nodeID].resps < MAX_RESPS){
-    // Add the response to the response array
-    respArr[numResps].line = line;
-    respArr[numResps].next = next;
-    // Add the response to the specified node
+  // checks that target node exists
+  if (nodeID >= 0 && nodeID < CHAT_SIZE && nodeArr[nodeID].nodeID != -1){
     Node* tmp = &nodeArr[nodeID];
-    tmp->next[tmp->resps] = numResps;
+    // checks that node has room for a response
+    if (tmp->resps < MAX_RESPS){
+      tmp->next[tmp->resps].line = line;
+      tmp->next[tmp->resps].next = next;
 
-    tmp->resps++;
-    return numResps++;
+      std::cout << "Added resp " << tmp->resps << " to node " << nodeID << std::endl;
+
+      return tmp->resps++;
+    }
   }
   return -1;
 }
