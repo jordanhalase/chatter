@@ -27,7 +27,7 @@ Chatter::Resp::Resp(){
 }
 
 std::string Chatter::print(int n){
-  if (n >= 0 && nodeArr[n].nodeID != -1){
+  if (n >= 0 && n < CHAT_SIZE && nodeArr[n].nodeID != -1){
     Node* tmp = &nodeArr[n];
     std::string ret = tmp->line + "\n";
     for (int i = 0; i < tmp->resps; i++){
@@ -49,6 +49,7 @@ void Chatter::chat(){
     }
     curr = nodeArr[curr].next[choice - 1].next;
   }
+
 }
 
 int Chatter::addNode(std::string line){
@@ -65,9 +66,23 @@ int Chatter::addNode(std::string line){
   return -1;
 }
 
+int Chatter::removeNode(int id){
+  // if the node exists
+  if (nodeExists(id)){
+    // reset data
+    nodeArr[id].nodeID = -1;
+    nodeArr[id].line = "";
+    nodeArr[id].resps = 0;
+
+    return id;
+  }
+  // node does not exist
+  return -1;
+}
+
 int Chatter::addResp(int nodeID, std::string line, int next){
   // checks that target node exists
-  if (nodeID >= 0 && nodeID < CHAT_SIZE && nodeArr[nodeID].nodeID != -1){
+  if (nodeExists(nodeID)){
     Node* tmp = &nodeArr[nodeID];
     // checks that node has room for a response
     if (tmp->resps < MAX_RESPS){
@@ -82,6 +97,22 @@ int Chatter::addResp(int nodeID, std::string line, int next){
   return -1;
 }
 
+int Chatter::removeResp(int nodeID, int respID){
+  if (nodeExists(nodeID)){
+    Node* tmp = &nodeArr[nodeID];
+    if (respID >= 0 && respID < tmp->resps){
+      // moves each response forward to replace the removed response
+      for (int i = respID; i < tmp->resps; i++){
+        tmp->next[i] = tmp->next[i + 1];
+      }
+      tmp->resps--;
+      return tmp->resps;
+    }
+    return -1;
+  }
+  return -1;
+}
+
 void Chatter::saveChat(std::string filename){
   std::ofstream ofs(filename);
   boost::archive::text_oarchive oa(ofs);
@@ -92,4 +123,8 @@ void Chatter::loadChat(std::string filename){
   std::ifstream ifs(filename);
   boost::archive::text_iarchive ia(ifs);
   ia >> *this;
+}
+
+bool Chatter::nodeExists(int id){
+  return (id >= 0 && id < CHAT_SIZE && nodeArr[id].nodeID != -1);
 }

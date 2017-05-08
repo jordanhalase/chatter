@@ -34,6 +34,9 @@ public:
   /** Adds a new response to the specified node ID or -1 on fail */
   int addResp(int id, std::string line, int next);
 
+  /** Removes response from node returning -1 on fail */
+  int removeResp(int nodeID, int respID);
+
   void chat();
 
   /** Saves the current chat to the specified file */
@@ -43,6 +46,8 @@ public:
   void loadChat(std::string filename);
 
 private:
+
+  bool nodeExists(int id);
 
   struct Resp {
     Resp();

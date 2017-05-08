@@ -27,11 +27,11 @@ void setupTestChat(Chatter* chat){
   chat->addResp(1, "go home", 0);
   chat->addResp(2, "go home", 0);
 
-  chat->saveChat("../test/save1");
+  chat->saveChat("../save/save1");
   std::cout << "Saving out." << std::endl;
 }
 
 void loadTestChat(Chatter* chat){
-  chat->loadChat("../test/save1");
+  chat->loadChat("../save/save1");
   std::cout << "Loading in." << std::endl;
 }
