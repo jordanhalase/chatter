@@ -11,7 +11,6 @@ public:
   ~Timeline();
 
   void update();
-  void draw();
 
   void frameLeft();
   void frameRight();

@@ -1,6 +1,7 @@
 #include <ncurses.h>
 #include <stdio.h>
 #include "Timeline.hpp"
+#include "NodeWindow.hpp"
 #include "Chatter.hpp"
 
 void init();
@@ -16,6 +17,7 @@ Chatter chat = Chatter();
 
 // UI components
 Timeline* tl;
+NodeWindow* cnode;
 
 int main(int argc, char* argv[]){
   init();
@@ -47,13 +49,16 @@ void init(){
   init_pair(2, COLOR_CYAN, COLOR_BLACK);
 
   tl = new Timeline(&chat);
-  wbkgd(stdscr, COLOR_PAIR(1));
+  cnode = new NodeWindow(&chat, 1);
+  wbkgd(stdscr, COLOR_PAIR(2));
 
   refresh();
   tl->update();
+  cnode->update();
 }
 
 void cleanup(){
   delete tl;
+  delete cnode;
   endwin();
 }

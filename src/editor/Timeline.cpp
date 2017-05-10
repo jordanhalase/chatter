@@ -41,10 +41,6 @@ void Timeline::goToFrame(int frame){
   moveCurrFrame(frame);
 }
 
-void Timeline::draw(){
-
-}
-
 void Timeline::moveCurrFrame(int newFrame){
   if (newFrame >= 0 && newFrame < CHAT_SIZE){
     wmove(el_timeline, 1, currFrame);
