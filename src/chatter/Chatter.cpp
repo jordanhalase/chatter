@@ -52,6 +52,13 @@ void Chatter::chat(){
 
 }
 
+Chatter::Node* Chatter::getNode(int id){
+  if (id >= 0 && id < CHAT_SIZE){
+    return &nodeArr[id];
+  }
+  return NULL;
+}
+
 int Chatter::addNode(std::string line){
   // iterates array, inserting node into first empty space
   for (int i = 0; i < CHAT_SIZE; i++){

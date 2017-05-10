@@ -20,35 +20,6 @@ public:
   Chatter();
   ~Chatter();
 
-  Chatter(char* file);
-
-  /** Returns formatted string for specified node ID */
-  std::string print(int n);
-
-  /** Adds a new conversation node and returns its ID or -1 on fail */
-  int addNode(std::string line);
-
-  /** Removes specified node, returning the index or -1 on fail */
-  int removeNode(int id);
-
-  /** Adds a new response to the specified node ID or -1 on fail */
-  int addResp(int id, std::string line, int next);
-
-  /** Removes response from node returning -1 on fail */
-  int removeResp(int nodeID, int respID);
-
-  void chat();
-
-  /** Saves the current chat to the specified file */
-  void saveChat(std::string filename);
-
-  /** Loads chat from the specified file */
-  void loadChat(std::string filename);
-
-private:
-
-  bool nodeExists(int id);
-
   struct Resp {
     Resp();
 
@@ -79,6 +50,37 @@ private:
     }
   };
 
+  Chatter(char* file);
+
+  /** Returns formatted string for specified node ID */
+  std::string print(int n);
+
+  /** Returns pointer to node at given index */
+  Node* getNode(int id);
+
+  /** Adds a new conversation node and returns its ID or -1 on fail */
+  int addNode(std::string line);
+
+  /** Removes specified node, returning the index or -1 on fail */
+  int removeNode(int id);
+
+  /** Adds a new response to the specified node ID or -1 on fail */
+  int addResp(int id, std::string line, int next);
+
+  /** Removes response from node returning -1 on fail */
+  int removeResp(int nodeID, int respID);
+
+  void chat();
+
+  /** Saves the current chat to the specified file */
+  void saveChat(std::string filename);
+
+  /** Loads chat from the specified file */
+  void loadChat(std::string filename);
+
+private:
+
+  bool nodeExists(int id);
 
   Node nodeArr[CHAT_SIZE];
 

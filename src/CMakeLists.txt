@@ -1,1 +1,2 @@
-add_library(Chatter Chatter.cpp Chatter.hpp)
+add_subdirectory(chatter)
+add_subdirectory(editor)
