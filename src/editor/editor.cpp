@@ -126,6 +126,7 @@ void handleInput(int ch){
 }
 
 void update(){
+
   refresh();
   tl->update();
   cnode->update();
@@ -134,7 +135,7 @@ void update(){
 
 void changeMode(Mode m){
   mode = m;
-  move(0,1);
+  move(0,COLS - 5);
   attron(A_BOLD);
   switch(m){
     case VIEW:

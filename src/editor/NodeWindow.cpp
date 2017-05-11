@@ -30,13 +30,16 @@ void NodeWindow::setNode(int n){
 void NodeWindow::update(){
   wmove(el_node, 1, MARGIN_L);
   wclrtoeol(el_node);
-  wprintw(el_node, showing->line.c_str());
 
-  const int respOffset = 2;
-  for (int i = 0; i < MAX_RESPS; i++){
-    wmove(el_node, i + respOffset, 3 + MARGIN_L);
-    wclrtoeol(el_node);
-    wprintw(el_node, showing->next[i].line.c_str());
+  if (showing != NULL){
+    wprintw(el_node, showing->line.c_str());
+
+    const int respOffset = 2;
+    for (int i = 0; i < MAX_RESPS; i++){
+      wmove(el_node, i + respOffset, 3 + MARGIN_L);
+      wclrtoeol(el_node);
+      wprintw(el_node, showing->next[i].line.c_str());
+    }
   }
 
   wrefresh(el_node);

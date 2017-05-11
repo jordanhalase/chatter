@@ -17,12 +17,12 @@ Chatter::~Chatter(){
 Chatter::Node::Node(){
   nodeID = -1;
   resps = 0;
-  line = "";
+  line = "EMPTY";
 
 }
 
 Chatter::Resp::Resp(){
-  line = "";
+  line = "EMPTY";
   next = 0;
 }
 
@@ -57,6 +57,10 @@ Chatter::Node* Chatter::getNode(int id){
     return &nodeArr[id];
   }
   return NULL;
+}
+
+int Chatter::addNode(int index){
+  return 0;
 }
 
 int Chatter::addNode(std::string line){

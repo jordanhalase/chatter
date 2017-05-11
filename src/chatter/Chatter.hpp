@@ -61,6 +61,9 @@ public:
   /** Adds a new conversation node and returns its ID or -1 on fail */
   int addNode(std::string line);
 
+  /** Adds a new blank conversation node at specified index */
+  int addNode(int index);
+
   /** Removes specified node, returning the index or -1 on fail */
   int removeNode(int id);
 

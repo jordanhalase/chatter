@@ -4,7 +4,10 @@ project (Chatter VERSION 0.1 LANGUAGES CXX)
 #enable_testing()
 
 add_executable(ChatterEdit src/editor/editor.cpp)
+add_executable(Driver src/driver.cpp)
+
 target_link_libraries(ChatterEdit Chatter)
+target_link_libraries(Driver Chatter)
 
 include_directories("src/chatter")
 
@@ -22,6 +25,7 @@ find_package(Boost COMPONENTS serialization)
 if (Boost_FOUND)
   include_directories(${Boost_INCLUDE_DIRS})
   target_link_libraries(ChatterEdit ${Boost_LIBRARIES})
+  target_link_libraries(Driver ${Boost_LIBRARIES})
 endif(Boost_FOUND)
 
 add_subdirectory(src)
