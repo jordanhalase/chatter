@@ -47,7 +47,7 @@ By default, the editor is set to **view** mode. In view mode, the user can easil
 | [ | Cycle current node left |
 | ] | Cycle current node right |
 | Enter | Enter edit mode on current node |
-| 1-6 | Display the node linked from response 1-6 |
+| Arrow up/down | Select which response to view next from |
 | s | Save the current chat. Prompts for filename |
 | l | Loads a chat. Prompts for filename |
 | q | Quits editor. Prevents quitting with unsaved changes |

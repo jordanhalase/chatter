@@ -39,6 +39,19 @@ int Timeline::frameRight(){
   return currFrame;
 }
 
+void Timeline::setNextFramePos(int frame){
+  if (frame >= 0 && frame < CHAT_SIZE && frame != currFrame){
+    if (nextFrame != currFrame){
+      wmove(el_timeline, 1, nextFrame);
+      waddch(el_timeline, ' ');
+    }
+    nextFrame = frame;
+    wmove(el_timeline, 1, nextFrame);
+    waddch(el_timeline, '$');
+    wrefresh(el_timeline);
+  }
+}
+
 void Timeline::goToFrame(int frame){
   moveCurrFrame(frame);
 }

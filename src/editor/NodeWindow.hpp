@@ -13,11 +13,17 @@ public:
   void update();
   void setNode(int n);
 
+  int chLineUp();
+  int chLineDn();
+  int getSelNextLine();
+
 private:
   WINDOW* el_node;
   Chatter* chat;
 
   Chatter::Node* showing;
+  int lineSel;
+  int changeLine(int newL);
 };
 
 #endif /* NodeWindow_hpp */

@@ -24,11 +24,14 @@ void changeMode(Mode m);
 void printSystemMsg(const char* msg);
 void cleanup();
 
+void setNNode();
+
 
 // Our global variables
 bool running = true;
 Chatter chat = Chatter();
-int showingFrame = 0;
+int cShowingFrame = 0;
+int nShowingFrame = 0;
 
 // UI components
 Timeline* tl;
@@ -65,10 +68,11 @@ void init(){
   mvaddch(MSGS_H, 1, '>');
   mvaddch(PROMPT_H, 1, ':');
 
+  keypad(stdscr, TRUE);
   refresh();
 
   tl = new Timeline(&chat);
-  tl->goToFrame(showingFrame);
+  tl->goToFrame(cShowingFrame);
   cnode = new NodeWindow(&chat, CNODE_H);
   nnode = new NodeWindow(&chat, NNODE_H);
 
@@ -84,12 +88,28 @@ void handleInput(int ch){
     case VIEW:
       switch(ch){
         case '[':
-          showingFrame = tl->frameLeft();
-          cnode->setNode(showingFrame);
+          cShowingFrame = tl->frameLeft();
+          cnode->setNode(cShowingFrame);
+          nShowingFrame = cnode->getSelNextLine();
+          nnode->setNode(nShowingFrame);
+          tl->setNextFramePos(nShowingFrame);
           break;
         case ']':
-          showingFrame = tl->frameRight();
-          cnode->setNode(showingFrame);
+          cShowingFrame = tl->frameRight();
+          cnode->setNode(cShowingFrame);
+          nShowingFrame = cnode->getSelNextLine();
+          nnode->setNode(nShowingFrame);
+          tl->setNextFramePos(nShowingFrame);
+          break;
+        case KEY_UP:
+          nShowingFrame = cnode->chLineUp();
+          nnode->setNode(nShowingFrame);
+          tl->setNextFramePos(nShowingFrame);
+          break;
+        case KEY_DOWN:
+          nShowingFrame = cnode->chLineDn();
+          nnode->setNode(nShowingFrame);
+          tl->setNextFramePos(nShowingFrame);
           break;
         default:
           running = false;
