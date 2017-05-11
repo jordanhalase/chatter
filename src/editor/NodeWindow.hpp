@@ -11,11 +11,13 @@ public:
   ~NodeWindow();
 
   void update();
+  void setNode(int n);
 
 private:
   WINDOW* el_node;
   Chatter* chat;
 
+  Chatter::Node* showing;
 };
 
 #endif /* NodeWindow_hpp */

@@ -29,12 +29,14 @@ void Timeline::update(){
   wrefresh(el_timeline);
 }
 
-void Timeline::frameLeft(){
+int Timeline::frameLeft(){
   moveCurrFrame(currFrame - 1);
+  return currFrame;
 }
 
-void Timeline::frameRight(){
+int Timeline::frameRight(){
   moveCurrFrame(currFrame + 1);
+  return currFrame;
 }
 
 void Timeline::goToFrame(int frame){

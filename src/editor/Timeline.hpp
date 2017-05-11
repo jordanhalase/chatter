@@ -12,8 +12,8 @@ public:
 
   void update();
 
-  void frameLeft();
-  void frameRight();
+  int frameLeft();
+  int frameRight();
   void goToFrame(int frame);
 
 private:
