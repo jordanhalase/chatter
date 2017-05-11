@@ -13,10 +13,12 @@ NodeWindow::~NodeWindow(){
 
 void NodeWindow::setNode(int n){
   showing = chat->getNode(n);
+  update();
 }
 
 void NodeWindow::update(){
   wmove(el_node, 1,1);
-  wprintw(el_node, "Test node text\n 1.\n 2.\n 3.\n 4.\n 5.\n 6.");
+  wclrtoeol(el_node);
+  wprintw(el_node, showing->line.c_str());
   wrefresh(el_node);
 }

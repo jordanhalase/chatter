@@ -47,6 +47,8 @@ int main(int argc, char* argv[]){
 }
 
 void init(){
+  // testing with a previously created chat
+  chat.loadChat("../save/save1");
 
   initscr();
   noecho();
@@ -79,9 +81,11 @@ void handleInput(int ch){
       switch(ch){
         case '[':
           showingFrame = tl->frameLeft();
+          cnode->setNode(showingFrame);
           break;
         case ']':
           showingFrame = tl->frameRight();
+          cnode->setNode(showingFrame);
           break;
         default:
           running = false;
@@ -95,6 +99,13 @@ void handleInput(int ch){
     case PLAY:
       break;
   }
+}
+
+void update(){
+  refresh();
+  tl->update();
+  cnode->update();
+  nnode->update();
 }
 
 void changeMode(Mode m){
@@ -113,6 +124,7 @@ void changeMode(Mode m){
       break;
   }
   attroff(A_BOLD);
+  refresh();
 }
 
 void cleanup(){
