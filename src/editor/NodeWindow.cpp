@@ -5,6 +5,12 @@ NodeWindow::NodeWindow(Chatter* ch, int y){
   el_node = newwin(9, COLS - 2, y, 1);
   wbkgd(el_node, COLOR_PAIR(3));
   showing = chat->getNode(0);
+
+  const int respOffset = 2;
+  for (int i = 0; i < MAX_RESPS; i++){
+    wmove(el_node, i + respOffset, 1);
+    wprintw(el_node, "%d.", i + 1);
+  }
 }
 
 NodeWindow::~NodeWindow(){

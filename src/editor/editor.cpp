@@ -7,6 +7,7 @@
 #define CNODE_H 1
 #define NNODE_H 11
 
+#define MSGS_H 20
 #define PROMPT_H 21
 
 enum Mode{
@@ -20,6 +21,7 @@ void init();
 void update();
 void handleInput(int ch);
 void changeMode(Mode m);
+void printSystemMsg(const char* msg);
 void cleanup();
 
 
@@ -60,6 +62,7 @@ void init(){
   wbkgd(stdscr, COLOR_PAIR(1));
 
   changeMode(VIEW);
+  mvaddch(MSGS_H, 1, '>');
   mvaddch(PROMPT_H, 1, ':');
 
   refresh();
@@ -73,6 +76,7 @@ void init(){
   cnode->update();
   nnode->update();
   tl->update();
+  printSystemMsg("Editor initialized!");
 }
 
 void handleInput(int ch){
@@ -124,6 +128,13 @@ void changeMode(Mode m){
       break;
   }
   attroff(A_BOLD);
+  refresh();
+}
+
+void printSystemMsg(const char* msg){
+  move(MSGS_H, 2);
+  clrtoeol();
+  printw(msg);
   refresh();
 }
 
