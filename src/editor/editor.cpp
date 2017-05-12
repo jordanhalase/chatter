@@ -10,6 +10,8 @@
 #define MSGS_H 20
 #define PROMPT_H 21
 
+#define KEY_ESC 27
+
 enum Mode{
   VIEW,
   EDIT,
@@ -29,6 +31,7 @@ void setNNode();
 
 // Our global variables
 bool running = true;
+bool unsaved = false;
 Chatter chat = Chatter();
 int cShowingFrame = 0;
 int nShowingFrame = 0;
@@ -57,6 +60,8 @@ void init(){
 
   initscr();
   noecho();
+  raw();
+  nonl();
   curs_set(0);
   start_color();
   init_pair(1, COLOR_BLACK, COLOR_CYAN);
@@ -84,40 +89,79 @@ void init(){
 }
 
 void handleInput(int ch){
+  // Global key commands
+  switch(ch){
+    case 'q':
+      if (unsaved){
+        printSystemMsg("Unsaved changes! Save your changes, or use Q to discard changes and quit.");
+      } else {
+        running = false;
+      }
+      break;
+    case 'Q':
+      running = false;
+      break;
+    default:
+      //printSystemMsg("key not supported.");
+      break;
+  }
+  // Mode-sensitive key commands
   switch(mode){
     case VIEW:
       switch(ch){
         case '[':
           cShowingFrame = tl->frameLeft();
+          /*
           cnode->setNode(cShowingFrame);
           nShowingFrame = cnode->getSelNextLine();
           nnode->setNode(nShowingFrame);
           tl->setNextFramePos(nShowingFrame);
+          */
           break;
         case ']':
           cShowingFrame = tl->frameRight();
+          /*
           cnode->setNode(cShowingFrame);
           nShowingFrame = cnode->getSelNextLine();
           nnode->setNode(nShowingFrame);
           tl->setNextFramePos(nShowingFrame);
+          */
           break;
         case KEY_UP:
           nShowingFrame = cnode->chLineUp();
+          /*
           nnode->setNode(nShowingFrame);
           tl->setNextFramePos(nShowingFrame);
+          */
           break;
         case KEY_DOWN:
           nShowingFrame = cnode->chLineDn();
+          /*
           nnode->setNode(nShowingFrame);
           tl->setNextFramePos(nShowingFrame);
+          */
+          break;
+        case '\r':
+        case '\n':
+        case KEY_ENTER:
+          unsaved = true;
+          changeMode(EDIT);
           break;
         default:
-          running = false;
           break;
       }
+      update();
       break;
 
     case EDIT:
+      switch(ch){
+        case KEY_ESC:
+          changeMode(VIEW);
+          break;
+        default:
+          break;
+      }
+      update();
       break;
 
     case PLAY:
@@ -126,11 +170,10 @@ void handleInput(int ch){
 }
 
 void update(){
-
-  refresh();
-  tl->update();
-  cnode->update();
-  nnode->update();
+  cnode->setNode(cShowingFrame);
+  nShowingFrame = cnode->getSelNextLine();
+  nnode->setNode(nShowingFrame);
+  tl->setNextFramePos(nShowingFrame);
 }
 
 void changeMode(Mode m){
