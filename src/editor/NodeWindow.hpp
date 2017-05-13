@@ -26,6 +26,8 @@ private:
   Chatter* chat;
 
   Chatter::Node* showing;
+  int showingID;
+
   int lineSel;
   int changeLine(int newL);
 };

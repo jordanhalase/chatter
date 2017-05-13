@@ -104,10 +104,10 @@ void handleInput(int ch){
     case 'Q':
       running = false;
       break;
-    case '[':
+    case KEY_LEFT:
       cShowingFrame = tl->frameLeft();
       break;
-    case ']':
+    case KEY_RIGHT:
       cShowingFrame = tl->frameRight();
       break;
     case KEY_UP:

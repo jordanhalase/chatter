@@ -10,7 +10,7 @@ The editor window is broken into two sections: the large upper area is the viewi
 
 ```
 +--------------------------------------------------------------------------------+
-| VIEW                                                                           |
+|                                                                           VIEW |
 | +----------------------------------------------------------------------------+ |
 | |   This is an example line of dialogue in the editor.                       | |
 | | > 1. This is the first response. Its link is shown below.                  | |
@@ -44,18 +44,20 @@ By default, the editor is set to **view** mode. In view mode, the user can easil
 
 | Key | Function |
 | --- | -------- |
-| [ | Cycle current node left |
-| ] | Cycle current node right |
-| Enter | Enter edit mode on current node |
+| <- (arrow left) | Cycle current node left |
+| -> (arrow right) | Cycle current node right |
+| Enter | Enter edit mode on current node and line |
 | Arrow up/down | Select which response to view next from |
 | s | Save the current chat. Prompts for filename |
 | l | Loads a chat. Prompts for filename |
 | q | Quits editor. Prevents quitting with unsaved changes |
 | Q | Quits editor, discarding unsaved changes |
+| [ | Cycles the next linked node left |
+| ] | Cycles the next linked node right |
 
 
 Pressing [ and ] will change the current node. When an empty node (marked * on the timeline) is chosen, pressing Enter will create a chat node there. Its symbol will change from * to ! on the timeline to show it is now a node, and the editor will go into edit mode.
 
 ### Edit Mode
 
-The editor switches to **edit** mode when the user wants to change the text on a given node.
+The editor switches to **edit** mode when the user wants to change the text on a given node. To reflect this change, the word **EDIT** appears in the upper right corner of the display. In this mode, the user can type in a line, and on pressing enter the line is saved into whatever the currently selected line in the current node is.

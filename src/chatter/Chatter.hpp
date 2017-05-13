@@ -74,7 +74,9 @@ public:
   std::string getLineFromNode(int id);
 
   /** Adds a new response to the specified node ID or -1 on fail */
-  int addResp(int id, std::string line, int next);
+  int addResp(int nodeID, std::string line, int next);
+
+  int replaceResp(int nodeID, int respID, std::string line);
 
   /** Removes response from node returning -1 on fail */
   int removeResp(int nodeID, int respID);

@@ -108,11 +108,21 @@ int Chatter::addResp(int nodeID, std::string line, int next){
       tmp->next[tmp->resps].line = line;
       tmp->next[tmp->resps].next = next;
 
-      std::cout << "Added resp " << tmp->resps << " to node " << nodeID << std::endl;
+      // std::cout << "Added resp " << tmp->resps << " to node " << nodeID << std::endl;
 
       return tmp->resps++;
     }
   }
+  return -1;
+}
+
+int Chatter::replaceResp(int nodeID, int respID, std::string line){
+  Node* tmp = &nodeArr[nodeID];
+  if (respID < tmp->resps){
+    tmp->next[respID].line = line;
+    return respID;
+  }
+
   return -1;
 }
 

@@ -6,7 +6,8 @@ NodeWindow::NodeWindow(Chatter* ch, int y){
   this->chat = ch;
   el_node = newwin(9, COLS - 2, y, 1);
   wbkgd(el_node, COLOR_PAIR(3));
-  showing = chat->getNode(0);
+  showingID = 0;
+  showing = chat->getNode(showingID);
   lineSel = 0;
 
   changeLine(0);
@@ -23,7 +24,8 @@ NodeWindow::~NodeWindow(){
 }
 
 void NodeWindow::setNode(int n){
-  showing = chat->getNode(n);
+  showingID = n;
+  showing = chat->getNode(showingID);
   if (showing == NULL){
     mvprintw(0, 0, "NULL node");
   }
@@ -50,10 +52,15 @@ void NodeWindow::update(){
 
 void NodeWindow::setLine(const char* str){
   if (lineSel == 0){
-    showing->line = str;
+    //showing->line = str;
+    chat->addLineToNode(showingID, str);
   } else {
-
-    showing->next[lineSel - 1].line = str;
+    if ((lineSel - 1) < showing->resps){
+      chat->replaceResp(showingID, lineSel - 1, str);
+    } else {
+      chat->addResp(showingID, str, 0);
+    }
+    //showing->next[lineSel - 1].line = str;
   }
   update();
 }
