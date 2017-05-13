@@ -24,10 +24,9 @@ NodeWindow::~NodeWindow(){
 }
 
 void NodeWindow::setNode(int n){
-  showingID = n;
-  showing = chat->getNode(showingID);
-  if (showing == NULL){
-    mvprintw(0, 0, "NULL node");
+  if (n > -1){
+    showingID = n;
+    showing = chat->getNode(showingID);
   }
   update();
 }

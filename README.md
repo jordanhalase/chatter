@@ -4,6 +4,12 @@
 
 Chatter is a static library and a collection of tools that gives an easy way to create branching dialogue tree systems for games.
 
+## TODO
+
+* Make sure that nodes aren't coming back as NULL
+* Make sure new nodes are being created properly
+* Add the way for the response's linked next node to change with [/] keys
+
 ## Editor basics
 
 The editor window is broken into two sections: the large upper area is the viewing and editing area where the current chat node is displayed, as well as a linked next node. Below that is a black bar which shows the "timeline". Each asterisk in the timeline represents one node of the conversation, and the caret underneath shows which node you are currently editing.
@@ -40,7 +46,7 @@ The editor window is broken into two sections: the large upper area is the viewi
 
 ### View Mode
 
-By default, the editor is set to **view** mode. In view mode, the user can easily browse through the loaded chat. View mode has the following controls:
+By default, the editor is set to **view** mode. This is shown in the upper right of the window. In view mode, the user can easily browse through the loaded chat. View mode has the following controls:
 
 | Key | Function |
 | --- | -------- |
