@@ -24,6 +24,9 @@ void update();
 void handleInput(int ch);
 void changeMode(Mode m);
 void printSystemMsg(const char* msg);
+void clearSystemMsg();
+void saveChat();
+void loadChat();
 void cleanup();
 
 void getInput(char* str);
@@ -104,6 +107,12 @@ void handleInput(int ch){
     case 'Q':
       running = false;
       break;
+    case 's':
+      saveChat();
+      break;
+    case 'l':
+      loadChat();
+      break;
     case KEY_LEFT:
       cShowingFrame = tl->frameLeft();
       break;
@@ -167,6 +176,42 @@ void printSystemMsg(const char* msg){
   clrtoeol();
   printw(msg);
   refresh();
+}
+
+void clearSystemMsg(){
+  move(MSGS_H, 2);
+  clrtoeol();
+}
+
+void saveChat(){
+  printSystemMsg("Enter filename to save:");
+  char path[40] = "../save/";
+  char name[32];
+  getInput(name);
+  strcat(path, name);
+  printSystemMsg(path);
+  try{
+    chat.saveChat(path);
+    clearSystemMsg();
+    unsaved = false;
+  } catch (std::exception ex) {
+    printSystemMsg("Error on saving.");
+  }
+}
+
+void loadChat(){
+  printSystemMsg("Enter filename to load:");
+  char path[40] = "../save/";
+  char name[32];
+  getInput(name);
+  strcat(path, name);
+  try{
+    chat.loadChat(path);
+    printSystemMsg(path);
+    unsaved = false;
+  } catch (std::exception ex) {
+    printSystemMsg("File not found.");
+  }
 }
 
 void getInput(char* str){
