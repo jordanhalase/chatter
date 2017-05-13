@@ -26,6 +26,9 @@ void changeMode(Mode m);
 void printSystemMsg(const char* msg);
 void cleanup();
 
+void getInput(char* str);
+void editLine();
+
 void setNNode();
 
 
@@ -101,72 +104,36 @@ void handleInput(int ch){
     case 'Q':
       running = false;
       break;
+    case '[':
+      cShowingFrame = tl->frameLeft();
+      break;
+    case ']':
+      cShowingFrame = tl->frameRight();
+      break;
+    case KEY_UP:
+      nShowingFrame = cnode->chLineUp();
+      break;
+    case KEY_DOWN:
+      nShowingFrame = cnode->chLineDn();
+      break;
+    case 't':
+      printSystemMsg("Enter a string:");
+      char str[128];
+      getInput(str);
+      printSystemMsg(str);
+      break;
+    case '\r':
+    case '\n':
+    case KEY_ENTER:
+      unsaved = true;
+      changeMode(EDIT);
+      editLine();
+      changeMode(VIEW);
+      break;
     default:
-      //printSystemMsg("key not supported.");
       break;
   }
-  // Mode-sensitive key commands
-  switch(mode){
-    case VIEW:
-      switch(ch){
-        case '[':
-          cShowingFrame = tl->frameLeft();
-          /*
-          cnode->setNode(cShowingFrame);
-          nShowingFrame = cnode->getSelNextLine();
-          nnode->setNode(nShowingFrame);
-          tl->setNextFramePos(nShowingFrame);
-          */
-          break;
-        case ']':
-          cShowingFrame = tl->frameRight();
-          /*
-          cnode->setNode(cShowingFrame);
-          nShowingFrame = cnode->getSelNextLine();
-          nnode->setNode(nShowingFrame);
-          tl->setNextFramePos(nShowingFrame);
-          */
-          break;
-        case KEY_UP:
-          nShowingFrame = cnode->chLineUp();
-          /*
-          nnode->setNode(nShowingFrame);
-          tl->setNextFramePos(nShowingFrame);
-          */
-          break;
-        case KEY_DOWN:
-          nShowingFrame = cnode->chLineDn();
-          /*
-          nnode->setNode(nShowingFrame);
-          tl->setNextFramePos(nShowingFrame);
-          */
-          break;
-        case '\r':
-        case '\n':
-        case KEY_ENTER:
-          unsaved = true;
-          changeMode(EDIT);
-          break;
-        default:
-          break;
-      }
-      update();
-      break;
-
-    case EDIT:
-      switch(ch){
-        case KEY_ESC:
-          changeMode(VIEW);
-          break;
-        default:
-          break;
-      }
-      update();
-      break;
-
-    case PLAY:
-      break;
-  }
+  update();
 }
 
 void update(){
@@ -200,6 +167,29 @@ void printSystemMsg(const char* msg){
   clrtoeol();
   printw(msg);
   refresh();
+}
+
+void getInput(char* str){
+  move(PROMPT_H, 2);
+  clrtoeol();
+  echo();
+  curs_set(1);
+  getstr(str);
+  curs_set(0);
+  noecho();
+  move(PROMPT_H, 2);
+  clrtoeol();
+}
+
+void editLine(){
+  move(PROMPT_H, 2);
+  clrtoeol();
+  //printw(nnode->getLine());
+  char str [128];
+
+  getInput(str);
+
+  cnode->setLine(str);
 }
 
 void cleanup(){

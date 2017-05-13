@@ -48,6 +48,20 @@ void NodeWindow::update(){
   wrefresh(el_node);
 }
 
+void NodeWindow::setLine(const char* str){
+  if (lineSel == 0){
+    showing->line = str;
+  } else {
+
+    showing->next[lineSel - 1].line = str;
+  }
+  update();
+}
+
+const char* NodeWindow::getLine(){
+  return showing->line.c_str();
+}
+
 int NodeWindow::chLineUp(){
   return changeLine(lineSel - 1);
 }

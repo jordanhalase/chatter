@@ -67,6 +67,12 @@ public:
   /** Removes specified node, returning the index or -1 on fail */
   int removeNode(int id);
 
+  /** Adds line to specified node */
+  void addLineToNode(int id, std::string line);
+
+  /** Returns line of specified node */
+  std::string getLineFromNode(int id);
+
   /** Adds a new response to the specified node ID or -1 on fail */
   int addResp(int id, std::string line, int next);
 

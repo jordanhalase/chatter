@@ -13,6 +13,10 @@ public:
   void update();
   void setNode(int n);
 
+  void setLine(const char* str);
+  const char* getLine();
+
+  /* Selected line changing */
   int chLineUp();
   int chLineDn();
   int getSelNextLine();

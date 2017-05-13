@@ -77,6 +77,14 @@ int Chatter::addNode(std::string line){
   return -1;
 }
 
+void Chatter::addLineToNode(int id, std::string line){
+  nodeArr[id].line = line;
+}
+
+std::string Chatter::getLineFromNode(int id){
+  return nodeArr[id].line;
+}
+
 int Chatter::removeNode(int id){
   // if the node exists
   if (nodeExists(id)){
