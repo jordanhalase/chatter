@@ -5,27 +5,28 @@
 #include "UIElement.hpp"
 #include "Chatter.hpp"
 
-class Timeline : public UIElement{
-public:
-  Timeline(Chatter*);
-  ~Timeline();
+class Timeline : public UIElement
+{
+  public:
+    Timeline(Chatter*);
+    ~Timeline();
 
-  void update();
+    void update();
 
-  int frameLeft();
-  int frameRight();
-  void goToFrame(int frame);
-  void setNextFramePos(int frame);
+    int frameLeft();
+    int frameRight();
+    void goToFrame(int frame);
+    void setNextFramePos(int frame);
 
-private:
-  WINDOW* el_timeline;
-  Chatter* chat;
+  private:
+    WINDOW* el_timeline;
+    Chatter* chat;
 
-  int currFrame;
-  int nextFrame;
+    int currFrame;
+    int nextFrame;
 
-  void moveCurrFrame(int newFrame);
-  
+    void moveCurrFrame(int newFrame);
+
 };
 
 #endif /* Timeline_hpp */

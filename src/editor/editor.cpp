@@ -13,7 +13,7 @@
 
 #define KEY_ESC 27
 
-enum Mode{
+enum Mode {
   VIEW,
   EDIT,
   PLAY
@@ -50,9 +50,10 @@ NodeWindow* nnode;
 
 Mode mode;
 
-int main(int argc, char* argv[]){
+int main(int argc, char* argv[])
+{
   init();
-  while (running){
+  while (running) {
     int ch = getch();
     handleInput(ch);
   }
@@ -61,7 +62,8 @@ int main(int argc, char* argv[]){
   return 0;
 }
 
-void init(){
+void init()
+{
   // testing with a previously created chat
   chat.loadChat("../save/save1");
 
@@ -95,11 +97,12 @@ void init(){
   printSystemMsg("Editor initialized!");
 }
 
-void handleInput(int ch){
+void handleInput(int ch)
+{
   // Global key commands
-  switch(ch){
+  switch(ch) {
     case 'q':
-      if (unsaved){
+      if (unsaved) {
         printSystemMsg("Unsaved changes! Save your changes, or use Q to discard changes and quit.");
       } else {
         running = false;
@@ -146,18 +149,20 @@ void handleInput(int ch){
   update();
 }
 
-void update(){
+void update()
+{
   cnode->setNode(cShowingFrame);
   nShowingFrame = cnode->getSelNextLine();
   nnode->setNode(nShowingFrame);
   tl->setNextFramePos(nShowingFrame);
 }
 
-void changeMode(Mode m){
+void changeMode(Mode m)
+{
   mode = m;
   move(0,COLS - 5);
   attron(A_BOLD);
-  switch(m){
+  switch(m) {
     case VIEW:
       printw("VIEW");
       break;
@@ -172,26 +177,29 @@ void changeMode(Mode m){
   refresh();
 }
 
-void printSystemMsg(const char* msg){
+void printSystemMsg(const char* msg)
+{
   move(MSGS_H, 2);
   clrtoeol();
   printw(msg);
   refresh();
 }
 
-void clearSystemMsg(){
+void clearSystemMsg()
+{
   move(MSGS_H, 2);
   clrtoeol();
 }
 
-void saveChat(){
+void saveChat()
+{
   printSystemMsg("Enter filename to save:");
   char path[40] = "../save/";
   char name[32];
   getInput(name);
   strcat(path, name);
   printSystemMsg(path);
-  try{
+  try {
     chat.saveChat(path);
     clearSystemMsg();
     unsaved = false;
@@ -200,13 +208,14 @@ void saveChat(){
   }
 }
 
-void loadChat(){
+void loadChat()
+{
   printSystemMsg("Enter filename to load:");
   char path[40] = "../save/";
   char name[32];
   getInput(name);
   strcat(path, name);
-  try{
+  try {
     chat.loadChat(path);
     printSystemMsg(path);
     unsaved = false;
@@ -215,7 +224,8 @@ void loadChat(){
   }
 }
 
-void getInput(char* str){
+void getInput(char* str)
+{
   move(PROMPT_H, 2);
   clrtoeol();
   echo();
@@ -227,20 +237,23 @@ void getInput(char* str){
   clrtoeol();
 }
 
-void editLine(){
+void editLine()
+{
   move(PROMPT_H, 2);
   clrtoeol();
   //printw(nnode->getLine());
-  char str [128];
+  char str[128];
 
   getInput(str);
 
   cnode->setLine(str);
 }
 
-void cleanup(){
+void cleanup()
+{
   delete tl;
   delete cnode;
   delete nnode;
   endwin();
 }
+

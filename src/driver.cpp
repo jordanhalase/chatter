@@ -5,7 +5,8 @@
 void setupTestChat(Chatter* chat);
 void loadTestChat(Chatter* chat);
 
-int main(int argc, char* argv[]){
+int main(int argc, char* argv[])
+{
   Chatter testChat = Chatter();
   setupTestChat(&testChat);
 
@@ -17,7 +18,8 @@ int main(int argc, char* argv[]){
   return 0;
 }
 
-void setupTestChat(Chatter* chat){
+void setupTestChat(Chatter* chat)
+{
   int node0 = chat->addNode("First node!");
   int node1 = chat->addNode("result 1.");
   int node2 = chat->addNode("result 2.");
@@ -31,7 +33,8 @@ void setupTestChat(Chatter* chat){
   std::cout << "Saving out." << std::endl;
 }
 
-void loadTestChat(Chatter* chat){
+void loadTestChat(Chatter* chat)
+{
   chat->loadChat("../save/save1");
   std::cout << "Loading in." << std::endl;
 }
