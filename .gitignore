@@ -32,4 +32,5 @@ build
 # Text and Configuration
 *.swp
 .ycm_extra_conf.py
+.editorconfig
 
