@@ -2,7 +2,7 @@
 
 #define MARGIN_L 2
 
-NodeWindow::NodeWindow(Chatter* ch, int y)
+NodeWindow::NodeWindow(Chatter* ch, const int y)
 {
   this->chat = ch;
   el_node = newwin(9, COLS - 2, y, 1);
@@ -25,7 +25,7 @@ NodeWindow::~NodeWindow()
   delwin(el_node);
 }
 
-void NodeWindow::setNode(int n)
+void NodeWindow::setNode(const int n)
 {
   if (n > -1) {
     showingID = n;

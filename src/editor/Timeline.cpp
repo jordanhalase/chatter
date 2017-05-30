@@ -44,7 +44,7 @@ int Timeline::frameRight()
   return currFrame;
 }
 
-void Timeline::setNextFramePos(int frame)
+void Timeline::setNextFramePos(const int frame)
 {
   if (frame >= 0 && frame < CHAT_SIZE && frame != currFrame) {
     if (nextFrame != currFrame) {
@@ -58,12 +58,12 @@ void Timeline::setNextFramePos(int frame)
   }
 }
 
-void Timeline::goToFrame(int frame)
+void Timeline::goToFrame(const int frame)
 {
   moveCurrFrame(frame);
 }
 
-void Timeline::moveCurrFrame(int newFrame)
+void Timeline::moveCurrFrame(const int newFrame)
 {
   if (newFrame >= 0 && newFrame < CHAT_SIZE) {
     wmove(el_timeline, 1, currFrame);

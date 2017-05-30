@@ -60,7 +60,7 @@ void changeMode(Mode m)
   refresh();
 }
 
-void init(std::string filename)
+void init(const std::string filename)
 {
   // testing with a previously created chat
   try {
@@ -169,7 +169,7 @@ void editLine()
   cnode->setLine(buf);
 }
 
-void handleInput(int ch)
+void handleInput(const int ch)
 {
   // Global key commands
   switch(ch) {
@@ -237,8 +237,7 @@ int main(int argc, char* argv[])
   }
   init(filename);
   while (running) {
-    int ch = getch();
-    handleInput(ch);
+    handleInput(getch());
   }
   cleanup();
   return 0;

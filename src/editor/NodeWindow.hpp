@@ -7,11 +7,11 @@
 
 class NodeWindow : public UIElement {
   public:
-    NodeWindow(Chatter* ch, int y);
+    NodeWindow(Chatter* ch, const int y);
     virtual ~NodeWindow();
 
     virtual void update();
-    void setNode(int n);
+    void setNode(const int n);
 
     void setLine(const char* str);
     const char* getLine();

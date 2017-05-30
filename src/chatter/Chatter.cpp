@@ -28,10 +28,10 @@ Chatter::Resp::Resp()
   next = 0;
 }
 
-std::string Chatter::print(int n)
+std::string Chatter::print(const int n)
 {
   if (n >= 0 && n < CHAT_SIZE && nodeArr[n].nodeID != -1) {
-    Node* tmp = &nodeArr[n];
+    const Node* tmp = &nodeArr[n];
     std::string ret = tmp->line + "\n";
     for (int i = 0; i < tmp->resps; i++) {
       ret += std::to_string(i + 1) + ". " + tmp->next[i].line + "\n";
@@ -56,7 +56,7 @@ void Chatter::chat()
 
 }
 
-Chatter::Node* Chatter::getNode(int id)
+Chatter::Node* Chatter::getNode(const int id)
 {
   if (id >= 0 && id < CHAT_SIZE) {
     return &nodeArr[id];
@@ -64,13 +64,13 @@ Chatter::Node* Chatter::getNode(int id)
   return NULL;
 }
 
-int Chatter::addNode(int index)
+int Chatter::addNode(const int index)
 {
   (void)index;
   return 0;
 }
 
-int Chatter::addNode(std::string line)
+int Chatter::addNode(const std::string line)
 {
   // iterates array, inserting node into first empty space
   for (int i = 0; i < CHAT_SIZE; i++) {
@@ -85,17 +85,17 @@ int Chatter::addNode(std::string line)
   return -1;
 }
 
-void Chatter::addLineToNode(int id, std::string line)
+void Chatter::addLineToNode(const int id, const std::string line)
 {
   nodeArr[id].line = line;
 }
 
-std::string Chatter::getLineFromNode(int id)
+std::string Chatter::getLineFromNode(const int id) const
 {
   return nodeArr[id].line;
 }
 
-int Chatter::removeNode(int id)
+int Chatter::removeNode(const int id)
 {
   // if the node exists
   if (nodeExists(id)) {
@@ -110,7 +110,7 @@ int Chatter::removeNode(int id)
   return -1;
 }
 
-int Chatter::addResp(int nodeID, std::string line, int next)
+int Chatter::addResp(const int nodeID, const std::string line, const int next)
 {
   // checks that target node exists
   if (nodeExists(nodeID)) {
@@ -128,7 +128,7 @@ int Chatter::addResp(int nodeID, std::string line, int next)
   return -1;
 }
 
-int Chatter::replaceResp(int nodeID, int respID, std::string line)
+int Chatter::replaceResp(const int nodeID, const int respID, const std::string line)
 {
   Node* tmp = &nodeArr[nodeID];
   if (respID < tmp->resps) {
@@ -139,7 +139,7 @@ int Chatter::replaceResp(int nodeID, int respID, std::string line)
   return -1;
 }
 
-int Chatter::removeResp(int nodeID, int respID)
+int Chatter::removeResp(const int nodeID, const int respID)
 {
   if (nodeExists(nodeID)) {
     Node* tmp = &nodeArr[nodeID];
@@ -156,21 +156,21 @@ int Chatter::removeResp(int nodeID, int respID)
   return -1;
 }
 
-void Chatter::saveChat(std::string filename)
+void Chatter::saveChat(const std::string filename)
 {
   std::ofstream ofs(filename);
   boost::archive::text_oarchive oa(ofs);
   oa << *this;
 }
 
-void Chatter::loadChat(std::string filename)
+void Chatter::loadChat(const std::string filename)
 {
   std::ifstream ifs(filename);
   boost::archive::text_iarchive ia(ifs);
   ia >> *this;
 }
 
-bool Chatter::nodeExists(int id)
+bool Chatter::nodeExists(const int id) const
 {
   return (id >= 0 && id < CHAT_SIZE && nodeArr[id].nodeID != -1);
 }

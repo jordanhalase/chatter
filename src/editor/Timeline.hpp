@@ -15,8 +15,8 @@ class Timeline : public UIElement
 
     int frameLeft();
     int frameRight();
-    void goToFrame(int frame);
-    void setNextFramePos(int frame);
+    void goToFrame(const int frame);
+    void setNextFramePos(const int frame);
 
   private:
     WINDOW* el_timeline;
@@ -25,7 +25,7 @@ class Timeline : public UIElement
     int currFrame;
     int nextFrame;
 
-    void moveCurrFrame(int newFrame);
+    void moveCurrFrame(const int newFrame);
 
 };
 
