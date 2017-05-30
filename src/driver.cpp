@@ -22,7 +22,7 @@ void loadTestChat(Chatter* chat, std::string filename)
   try {
     chat->loadChat(filename);
   } catch (std::exception ex) {
-    fprintf(stderr, "Could not load file %s\n", filename.c_str());
+    fprintf(stderr, "Could not load file '%s'\n", filename.c_str());
     abort();
   }
   printf("Loading in.\n");
