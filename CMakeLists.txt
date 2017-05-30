@@ -1,7 +1,9 @@
-cmake_minimum_required (VERSION 3.7)
+cmake_minimum_required (VERSION 3.1)
 project (Chatter VERSION 0.1 LANGUAGES CXX)
 
-#enable_testing()
+# enable_testing()
+
+set(CMAKE_CXX_STANDARD 11)
 
 add_executable(ChatterEdit src/editor/editor.cpp)
 add_executable(Driver src/driver.cpp)

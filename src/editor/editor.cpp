@@ -1,5 +1,6 @@
 #include <ncurses.h>
 #include <stdio.h>
+#include <string.h>
 #include "Timeline.hpp"
 #include "NodeWindow.hpp"
 #include "Chatter.hpp"
