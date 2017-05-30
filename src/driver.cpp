@@ -1,24 +1,8 @@
-#include <iostream>
+#include <stdio.h>
 
 #include "Chatter.hpp"
 
-void setupTestChat(Chatter* chat);
-void loadTestChat(Chatter* chat);
-
-int main(int argc, char* argv[])
-{
-  Chatter testChat = Chatter();
-  setupTestChat(&testChat);
-
-  Chatter loadedChat = Chatter();
-
-  loadTestChat(&loadedChat);
-
-  loadedChat.chat();
-  return 0;
-}
-
-void setupTestChat(Chatter* chat)
+void setupTestChat(Chatter* chat, std::string filename)
 {
   int node0 = chat->addNode("First node!");
   int node1 = chat->addNode("result 1.");
@@ -29,12 +13,38 @@ void setupTestChat(Chatter* chat)
   chat->addResp(1, "go home", 0);
   chat->addResp(2, "go home", 0);
 
-  chat->saveChat("../save/save1");
-  std::cout << "Saving out." << std::endl;
+  chat->saveChat(filename);
+  printf("Saving out.\n");
 }
 
-void loadTestChat(Chatter* chat)
+void loadTestChat(Chatter* chat, std::string filename)
 {
-  chat->loadChat("../save/save1");
-  std::cout << "Loading in." << std::endl;
+  try {
+    chat->loadChat(filename);
+  } catch (std::exception ex) {
+    fprintf(stderr, "Could not load file %s\n", filename.c_str());
+    abort();
+  }
+  printf("Loading in.\n");
+}
+
+int main(int argc, char* argv[])
+{
+  std::string filename = "save";
+  if (argc > 1) {
+    filename = argv[1];
+  }
+
+  Chatter* chat;
+
+  chat = new Chatter();
+  setupTestChat(chat, filename);
+  delete chat;
+
+  chat = new Chatter();
+  loadTestChat(chat, filename);
+  chat->chat();
+  delete chat;
+
+  return 0;
 }

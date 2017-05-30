@@ -8,9 +8,9 @@
 class NodeWindow : public UIElement {
   public:
     NodeWindow(Chatter* ch, int y);
-    ~NodeWindow();
+    virtual ~NodeWindow();
 
-    void update();
+    virtual void update();
     void setNode(int n);
 
     void setLine(const char* str);

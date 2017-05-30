@@ -19,53 +19,56 @@ enum Mode {
   PLAY
 };
 
-void init();
-
-void update();
-void handleInput(int ch);
-void changeMode(Mode m);
-void printSystemMsg(const char* msg);
-void clearSystemMsg();
-void saveChat();
-void loadChat();
-void cleanup();
-
-void getInput(char* str);
-void editLine();
-
-void setNNode();
-
-
 // Our global variables
 bool running = true;
 bool unsaved = false;
 Chatter chat = Chatter();
 int cShowingFrame = 0;
 int nShowingFrame = 0;
-
-// UI components
-Timeline* tl;
-NodeWindow* cnode;
-NodeWindow* nnode;
-
 Mode mode;
 
-int main(int argc, char* argv[])
-{
-  init();
-  while (running) {
-    int ch = getch();
-    handleInput(ch);
-  }
+// UI components
+Timeline* tl = nullptr;
+NodeWindow* cnode = nullptr;
+NodeWindow* nnode = nullptr;
 
-  cleanup();
-  return 0;
+void printSystemMsg(const char* msg)
+{
+  move(MSGS_H, 2);
+  clrtoeol();
+  printw(msg);
+  refresh();
 }
 
-void init()
+void changeMode(Mode m)
+{
+  mode = m;
+  move(0, COLS - 5);
+  attron(A_BOLD);
+  switch(m) {
+    case VIEW:
+      printw("VIEW");
+      break;
+    case EDIT:
+      printw("EDIT");
+      break;
+    case PLAY:
+      printw("PLAY");
+      break;
+  }
+  attroff(A_BOLD);
+  refresh();
+}
+
+void init(std::string filename)
 {
   // testing with a previously created chat
-  chat.loadChat("../save/save1");
+  try {
+    chat.loadChat(filename);
+  } catch (std::exception ex) {
+    fprintf(stderr, "Could not load file %s\n", filename.c_str());
+    abort();
+  }
 
   initscr();
   noecho();
@@ -90,11 +93,80 @@ void init()
   cnode = new NodeWindow(&chat, CNODE_H);
   nnode = new NodeWindow(&chat, NNODE_H);
 
-
   cnode->update();
   nnode->update();
   tl->update();
   printSystemMsg("Editor initialized!");
+}
+
+void update()
+{
+  cnode->setNode(cShowingFrame);
+  nShowingFrame = cnode->getSelNextLine();
+  nnode->setNode(nShowingFrame);
+  tl->setNextFramePos(nShowingFrame);
+}
+
+void clearSystemMsg()
+{
+  move(MSGS_H, 2);
+  clrtoeol();
+}
+
+void getInput(char* buf)
+{
+  move(PROMPT_H, 2);
+  clrtoeol();
+  echo();
+  curs_set(1);
+  getstr(buf);
+  curs_set(0);
+  noecho();
+  move(PROMPT_H, 2);
+  clrtoeol();
+}
+
+void saveChat()
+{
+  printSystemMsg("Enter filename to save:");
+  char path[40] = "./";
+  char name[32];
+  getInput(name);
+  strcat(path, name);
+  printSystemMsg(path);
+  try {
+    chat.saveChat(path);
+    clearSystemMsg();
+    unsaved = false;
+  } catch (std::exception ex) {
+    printSystemMsg("Error on saving.");
+  }
+}
+
+void loadChat()
+{
+  printSystemMsg("Enter filename to load:");
+  char path[40] = "./";
+  char name[32];
+  getInput(name);
+  strcat(path, name);
+  try {
+    chat.loadChat(path);
+    printSystemMsg(path);
+    unsaved = false;
+  } catch (std::exception ex) {
+    printSystemMsg("File not found.");
+  }
+}
+
+void editLine()
+{
+  move(PROMPT_H, 2);
+  clrtoeol();
+  //printw(nnode->getLine());
+  char buf[128];
+  getInput(buf);
+  cnode->setLine(buf);
 }
 
 void handleInput(int ch)
@@ -131,9 +203,9 @@ void handleInput(int ch)
       break;
     case 't':
       printSystemMsg("Enter a string:");
-      char str[128];
-      getInput(str);
-      printSystemMsg(str);
+      char buf[128];
+      getInput(buf);
+      printSystemMsg(buf);
       break;
     case '\r':
     case '\n':
@@ -149,111 +221,26 @@ void handleInput(int ch)
   update();
 }
 
-void update()
-{
-  cnode->setNode(cShowingFrame);
-  nShowingFrame = cnode->getSelNextLine();
-  nnode->setNode(nShowingFrame);
-  tl->setNextFramePos(nShowingFrame);
-}
-
-void changeMode(Mode m)
-{
-  mode = m;
-  move(0,COLS - 5);
-  attron(A_BOLD);
-  switch(m) {
-    case VIEW:
-      printw("VIEW");
-      break;
-    case EDIT:
-      printw("EDIT");
-      break;
-    case PLAY:
-      printw("PLAY");
-      break;
-  }
-  attroff(A_BOLD);
-  refresh();
-}
-
-void printSystemMsg(const char* msg)
-{
-  move(MSGS_H, 2);
-  clrtoeol();
-  printw(msg);
-  refresh();
-}
-
-void clearSystemMsg()
-{
-  move(MSGS_H, 2);
-  clrtoeol();
-}
-
-void saveChat()
-{
-  printSystemMsg("Enter filename to save:");
-  char path[40] = "../save/";
-  char name[32];
-  getInput(name);
-  strcat(path, name);
-  printSystemMsg(path);
-  try {
-    chat.saveChat(path);
-    clearSystemMsg();
-    unsaved = false;
-  } catch (std::exception ex) {
-    printSystemMsg("Error on saving.");
-  }
-}
-
-void loadChat()
-{
-  printSystemMsg("Enter filename to load:");
-  char path[40] = "../save/";
-  char name[32];
-  getInput(name);
-  strcat(path, name);
-  try {
-    chat.loadChat(path);
-    printSystemMsg(path);
-    unsaved = false;
-  } catch (std::exception ex) {
-    printSystemMsg("File not found.");
-  }
-}
-
-void getInput(char* str)
-{
-  move(PROMPT_H, 2);
-  clrtoeol();
-  echo();
-  curs_set(1);
-  getstr(str);
-  curs_set(0);
-  noecho();
-  move(PROMPT_H, 2);
-  clrtoeol();
-}
-
-void editLine()
-{
-  move(PROMPT_H, 2);
-  clrtoeol();
-  //printw(nnode->getLine());
-  char str[128];
-
-  getInput(str);
-
-  cnode->setLine(str);
-}
-
 void cleanup()
 {
   delete tl;
   delete cnode;
   delete nnode;
   endwin();
+}
+
+int main(int argc, char* argv[])
+{
+  std::string filename = "save";
+  if (argc > 1) {
+    filename = argv[1];
+  }
+  init(filename);
+  while (running) {
+    int ch = getch();
+    handleInput(ch);
+  }
+  cleanup();
+  return 0;
 }
 

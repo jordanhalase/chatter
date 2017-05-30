@@ -1,12 +1,12 @@
 # Chatter
 
-### A branching dialogue system for C++ games
+### A branching dialogue system for games written in C++11
 
 Chatter is a static library and a collection of tools that gives an easy way to create branching dialogue tree systems for games.
 
 ## TODO
 
-* Make sure that nodes aren't coming back as NULL
+* Make sure that nodes aren't coming back as nullptr
 * Make sure new nodes are being created properly
 * Add the way for the response's linked next node to change with [/] keys
 

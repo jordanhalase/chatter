@@ -3,17 +3,16 @@
  * 25 April 2017
  */
 
-#include "Chatter.hpp"
 #include <fstream>
+
+#include "Chatter.hpp"
 
 Chatter::Chatter()
 {
-
 }
 
 Chatter::~Chatter()
 {
-
 }
 
 Chatter::Node::Node()
@@ -21,7 +20,6 @@ Chatter::Node::Node()
   nodeID = -1;
   resps = 0;
   line = "EMPTY";
-
 }
 
 Chatter::Resp::Resp()
@@ -68,6 +66,7 @@ Chatter::Node* Chatter::getNode(int id)
 
 int Chatter::addNode(int index)
 {
+  (void)index;
   return 0;
 }
 

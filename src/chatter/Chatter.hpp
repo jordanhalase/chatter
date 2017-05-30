@@ -29,6 +29,7 @@ class Chatter {
       template <class Archive>
         void serialize(Archive& ar, const unsigned int version)
         {
+          (void)version;
           ar & line;
           ar & next;
         }
@@ -45,6 +46,7 @@ class Chatter {
       template <class Archive>
         void serialize(Archive& ar, const unsigned int version)
         {
+          (void)version;
           ar & nodeID;
           ar & line;
           ar & resps;
@@ -101,6 +103,7 @@ class Chatter {
     template <class Archive>
       void serialize(Archive& ar, const unsigned int version)
       {
+        (void)version;
         ar & nodeArr;
       }
 

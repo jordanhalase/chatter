@@ -9,9 +9,9 @@ class Timeline : public UIElement
 {
   public:
     Timeline(Chatter*);
-    ~Timeline();
+    virtual ~Timeline();
 
-    void update();
+    virtual void update();
 
     int frameLeft();
     int frameRight();
